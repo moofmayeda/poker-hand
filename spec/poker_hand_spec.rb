@@ -22,11 +22,11 @@ describe("is_straight") do
 end
 
 describe("is_pair") do
-  it("checks if a hand has a pair") do
-    is_pair({13 => 2, 5 => 1, 7 => 1, 8 => 1}).should(eq(true))
+  it("checks if a hand has any pairs") do
+    is_pair({13 => 2, 5 => 2, 7 => 1}).should(eq(true))
   end
   it("checks if a had does not have any duplicate numbers") do
-    is_pair({13 => 2, 5 => 1, 7 => 2}).should(eq(false))
+    is_pair({13 => 1, 11 => 1, 5 => 1, 7 => 1, 2 => 1}).should(eq(false))
   end
 end
 
@@ -61,6 +61,10 @@ describe("poker_hand") do
 
   it("takes a crappy hand and tells you it is crap") do
     poker_hand(["2H", "4D", "8C", "10H", "6H"]).should(eq("your hand sucks"))
+  end
+
+  it("takes two pairs and returns its type") do
+    poker_hand(["2H", "2D", "8C", "8H", "6H"]).should(eq("two pair"))
   end
 end
 

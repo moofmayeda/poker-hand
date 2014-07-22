@@ -12,10 +12,10 @@ def poker_hand(hand)
     return "four of a kind"
   elsif is_three_of_kind(counts)
     return "three of a kind"
-  elsif is_pair(counts)
-    return "a pair"
   elsif is_two_pair(counts)
     return "two pair"
+  elsif is_pair(counts)
+    return "a pair"
   elsif is_straight(hand)
     return "straight"
   elsif is_flush(hand)
@@ -52,21 +52,9 @@ def is_three_of_kind(counts)
 end
 
 def is_pair(counts)
-  result = false
-  counts.each do |key, count|
-    if count == 2
-      result = !result
-    end
-  end
-  return result
+  counts.detect {|key, count| count == 2} != nil
 end
 
 def is_two_pair(counts)
-  twos = 0
-  counts.each do |key, count|
-    if count == 2
-      twos += 1
-    end
-  end
-  twos == 2 ? true : false
+  counts.select {|key, count| count == 2}.length == 2
 end
